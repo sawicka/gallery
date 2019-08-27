@@ -1,0 +1,40 @@
+.artwork-card {
+    position: relative;
+    padding: 5px;
+    width: 22rem;
+    margin: 5px auto;
+}
+
+.artwork-img {
+    object-fit: contain;
+    width: 20em;
+    height: 25em;
+    margin: 0 1rem;
+}
+
+.artwork-info {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: #000000;
+    background-color: rgba(0, 0 ,0, 0.5);
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -ms-transition: .5s ease;
+    -o-transition: .5s ease;
+    transition: .5s ease;
+    color: white;
+    padding: 20px;
+}
+
+.artwork-title {
+    font-weight: bold;
+}
+
+.btn {
+    float: right;
+}
+
+.artwork-card:hover .artwork-info {
+    background-color: #000000;
+}

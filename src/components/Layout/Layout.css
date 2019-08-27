@@ -1,0 +1,30 @@
+.Layout .navbar {
+    padding: 1.5rem 5rem;
+}
+
+.Layout .logo {
+    font-size: 2rem;
+    white-space: normal;
+}
+
+.Layout main {
+    background-color: #E2E2E2;
+    padding: 0 10rem;
+}
+
+.Layout .container-fluid {
+    background-color: white;
+    padding: 3rem 6rem 8rem;
+    min-height: 55rem;
+}
+
+.Layout footer {
+    background-color: black;
+    height: 10rem;
+}
+
+@media (max-width: 1600px) {
+    .Layout main {
+        padding: 0;
+    }
+}
