@@ -11,7 +11,8 @@ class AddArtwork extends Component {
         super(props);
 
         this.state = {
-            types : [],
+            types: [],
+            owners: [],
             authors: [],
             isChecked: false,
             amountTitleInputs: 1,
@@ -20,6 +21,7 @@ class AddArtwork extends Component {
             formControl: {
                 title: null,
                 bookId: 1,
+                owner: '1',
                 createDate: null,
                 description: null,
                 style: null,
@@ -53,11 +55,15 @@ class AddArtwork extends Component {
             .then(data => {
                 this.setState({types: data})
             });
-
         fetch("/artworks/authors")
             .then(res => res.json())
             .then(data => {
                 this.setState({authors: data})
+            });
+        fetch("/artworks/owners")
+            .then(res => res.json())
+            .then(data => {
+                this.setState({owners: data})
             });
     }
 
@@ -90,21 +96,21 @@ class AddArtwork extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const data = new FormData();
-        for(let i = 0; i < this.state.images.length; i++) {
-            data.append('file', this.state.images[i]);
-        }
+        // const data = new FormData();
+        // for(let i = 0; i < this.state.images.length; i++) {
+        //     data.append('file', this.state.images[i]);
+        // }
+        //
+        // fetch('/images/add', {
+        //     method: 'POST',
+        //     body: data,
+        // }).then(res => {
+        //     toast.success('Zapisano pomyślnie');
+        // }).catch(err => {
+        //     toast.error('Zapisywanie nie powiodło się');
+        // })
 
-        fetch('/images/add', {
-            method: 'POST',
-            body: data,
-        }).then(res => {
-            toast.success('Zapisano pomyślnie');
-        }).catch(err => {
-            toast.error('Zapisywanie nie powiodło się');
-        })
-
-/*        console.log(this.state.formControl);
+        console.log(this.state.formControl);
         fetch('/artwork/add', {
             method: 'POST',
             body: JSON.stringify(this.state.formControl),
@@ -112,7 +118,7 @@ class AddArtwork extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => res)
-            .catch(err => err)*/
+            .catch(err => err)
     }
 
     maxSelectFile = (event) => {
@@ -174,7 +180,7 @@ class AddArtwork extends Component {
     render() {
         let typeSelect = this.state.types.map(
             (type) => {
-                let index = this.state.types.indexOf(type);
+                let index = this.state.types.indexOf(type) + 1;
                 return (
                     <option key={'type-'+index} value={index}>{type}</option>
                 )
@@ -211,6 +217,13 @@ class AddArtwork extends Component {
                 <h3>Nowy obiekt</h3>
 
                 <Form onSubmit={this.handleSubmit}>
+                    <Form.Group controlId={'radio1'} >
+                        <Form.Check type={'radio'} label={this.state.owners[0]} name={'owner'} value={'1'} checked={this.state.formControl.owner === '1'} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId={'radio2'}>
+                        <Form.Check type={'radio'} label={this.state.owners[1]} name={'owner'} value={'2'} checked={this.state.formControl.owner === '2'} onChange={this.handleChange}/>
+                    </Form.Group>
+
                     <Form.Group controlId={'inputTitle'}>
                         <Form.Label>Tytuł</Form.Label>
                         <Form.Control disabled={isDisabled} name={'title'} type="text" onChange={this.handleChange} />
@@ -257,7 +270,7 @@ class AddArtwork extends Component {
                     </Form.Group>
                     <Form.Group controlId={'inputAmount'}>
                         <Form.Label>Ilość części: </Form.Label>
-                        <Form.Control name={'amount'} type="text" onChange={this.handleChange} />
+                        <Form.Control name={'amount'} type="number" onChange={this.handleChange} />
                     </Form.Group>
                     <Form.Group controlId={'textareaDescription'}>
                         <Form.Label>Opis: </Form.Label>

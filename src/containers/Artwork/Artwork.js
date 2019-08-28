@@ -22,6 +22,12 @@ class Artwork extends Component {
             <h3>{this.state.artwork.title}</h3>
             <hr />
             <div className="row">
+                <div className="col">
+                    {this.state.artwork.owner}
+                </div>
+            </div>
+            <br/>
+            <div className="row">
                 <div className="col-lg-2 col-md-4 col-sm-5">
                     <span>Tytuły:</span>
                 </div>
