@@ -28,3 +28,10 @@
         padding: 0;
     }
 }
+
+@media (max-width: 890px) {
+    .Layout .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}

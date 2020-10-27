@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast} from "react-toastify";
 
 import './AddAuthor.css';
 
@@ -30,17 +31,20 @@ class AddAuthor extends Component{
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+
         fetch('/author/add', {
             method: 'POST',
             body: JSON.stringify(this.state.formControl),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => res)
-            .catch(err => err);
-
-console.log("Submitted");
-        event.preventDefault();
+        }).then(res => {
+            if(res.status === 200) {
+                toast.success('Zapisano pomyślnie');
+                this.setState({formControl: {name: '', surname: '', country: ''}})
+            }
+        }).catch(err => err);
     }
 
     render() {
@@ -50,17 +54,18 @@ console.log("Submitted");
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId={'nameInput'}>
                         <Form.Label>Imię: </Form.Label>
-                        <Form.Control name="name" type="text" value={this.state.formControl.name} onChange={this.handleChange} />
+                        <Form.Control required name="name" type="text" value={this.state.formControl.name} onChange={this.handleChange} />
                     </Form.Group>
                     <Form.Group controlId={'surnameInput'}>
                         <Form.Label>Nazwisko: </Form.Label>
-                        <Form.Control name="surname" type="text" value={this.state.formControl.surname} onChange={this.handleChange} />
+                        <Form.Control required name="surname" type="text" value={this.state.formControl.surname} onChange={this.handleChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Kraj pochodzenia: </Form.Label>
                         <Form.Control name="country" type="text" value={this.state.formControl.country} onChange={this.handleChange} />
                     </Form.Group>
                     <Button type="submit" variant={'dark'} size={'lg'} className="saveBtn" >Dodaj</Button>
+                    <ToastContainer/>
                 </Form>
             </div>
         )

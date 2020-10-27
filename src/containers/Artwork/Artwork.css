@@ -2,3 +2,11 @@
     background-color: white;
     padding: 3rem 6rem;
 }
+
+.Artwork .btn {
+    margin: 0 0.5rem;
+}
+
+.Artwork h3 {
+    padding-bottom: 1rem;
+}

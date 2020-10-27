@@ -38,3 +38,35 @@
 .artwork-card:hover .artwork-info {
     background-color: #000000;
 }
+
+.filter {
+    margin:  1rem 2.5rem 3rem;
+}
+
+.filter .inline-input {
+    display: inline-flex;
+    margin-left: 1.5rem;
+}
+
+.filter h5 {
+    margin-bottom: 1rem;
+}
+
+.filter .search-title{
+    margin-bottom: 2rem;
+}
+
+.inline-input .type-label {
+    margin: 0 .5rem;
+}
+
+@media (max-width: 450px) {
+    .artwork-card {
+        width: 18rem;
+    }
+
+    .artwork-img {
+        width: 16em;
+        height: 20em;
+    }
+}

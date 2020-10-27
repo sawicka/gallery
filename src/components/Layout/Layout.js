@@ -1,44 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
 
-import './Layout.css';
+import "./Layout.css";
 
 const layout = (props) => (
-    <div className="Layout">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div className="Layout">
+    <Navbar bg={"dark"} variant={"dark"} expand={"lg"}>
+      <Navbar.Brand href={"/"} className={"navbar-brand logo"}>
+        Gallery
+      </Navbar.Brand>
 
-            <a href="/" className="navbar-brand logo">Księga Inwentarzowa Galerii EL</a>
+      <Navbar.Toggle aria-controls={"basic-navbar-nav"} />
 
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+      <Navbar.Collapse id="basic-navbar-nav" className={"justify-content-end"}>
+        {props.isLogged ? (
+          <Nav>
+            <Link className={"nav-link"} to="/">
+              {" "}
+              Lista{" "}
+            </Link>
+            <Link className={"nav-link"} to="/add/artwork">
+              {" "}
+              Dodaj dzieło{" "}
+            </Link>
+            <Link className={"nav-link"} to="/add/author">
+              {" "}
+              Dodaj autora{" "}
+            </Link>
+            <Nav.Link onClick={props.logout}>Wyloguj się</Nav.Link>
+          </Nav>
+        ) : (
+          <Nav>
+            <Link className={"nav-link"} to="/">
+              Lista
+            </Link>
+            <Link className={"nav-link"} to="/login">
+              Zaloguj się
+            </Link>
+          </Nav>
+        )}
+      </Navbar.Collapse>
+    </Navbar>
 
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <Link to='/'><span className="nav-link">Lista</span></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/add/artwork'><span className="nav-link" >Dodaj dzieło</span></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to='/add/author'><span className="nav-link" >Dodaj autora</span></Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <main>
-            <div className={"container-fluid"}>
-
-            {props.children}
-
-            </div>
-        </main>
-        <footer>
-
-        </footer>
-    </div>
+    <main>
+      <div className={"container-fluid"}>{props.children}</div>
+    </main>
+    <footer></footer>
+  </div>
 );
 
 export default layout;

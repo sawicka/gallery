@@ -1,0 +1,16 @@
+.Login h3 {
+    padding-bottom: 2rem;
+}
+
+.loginForm {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.loginForm label {
+    font-size: 18px;
+}
+
+.loginForm button {
+    margin-top: 1.5rem;
+}

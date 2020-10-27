@@ -1,0 +1,25 @@
+.deleteBtn {
+    float: none;
+    margin: 1rem 0;
+}
+
+.uploadInput {
+    margin-top: 1rem;
+}
+
+.ArtworkForm .saveBtn {
+    margin-top: 1rem;
+}
+
+.ArtworkForm .addBtn {
+    float: left;
+    margin-right: 5px;
+}
+
+.ArtworkForm .removeBtn {
+    float: none;
+}
+
+.titleInputBtns {
+    margin-bottom: 2rem;
+}
