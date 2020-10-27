@@ -1,3 +1,7 @@
+# Gallery
+
+This app presents way of storing and presenting pieces of art. It can be use to keep inventory of artworks owned by art institutions. This is university project.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
